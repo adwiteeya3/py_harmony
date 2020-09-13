@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<br>
+<br>
+
+<center> <h3>Upload</h3> </center>
+<form action='/upload' method='POST' enctype="multipart/form-data">
+    <label for="inputFile">  </label>
+    <br>
+    <div class="form-group">
+        <label>Artist: </label>
+        <input class="form-control mx-sm-3" type="text" name='artist' id='artist' placeholder="Enter Artist">
+    </div>
+    
+    <div class="form-group">
+        <label>Album:  </label>
+        <input class="form-control mx-sm-3" type="text" name='album' id='album' placeholder="Enter Album">
+    </div>
+
+    <br>
+    <input type="file" name="inputFile" multiple=True autocomplete="off" required>
+<button type='submit' class="btn btn-primary mb-2">Submit</button>
+</form>
+
+<hr>
+
+
+
+{% endblock %}

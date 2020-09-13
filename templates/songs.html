@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Amplify </title>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="page-header">
+    <center>
+        <h1>Playlist</h1>
+    </center>
+    <a class="btn btn-success float-right" href="/upload">+ New Song</a>
+</div>
+<br>
+<br>
+{% for song in songs %}
+<br>
+<h4> {{ song.title }} </h4>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        {% if song.artist %}
+        <small> <b> Artist: </b> {{ song.artist }} </small>
+        {% else %}
+        <small> <b> Artist: </b> N/A </small>
+        {% endif %}
+    </div>
+    <div class="form-group col-md-6">
+        {% if song.album %}
+        <small> <b> Album: </b> {{ song.album }}</small>
+        {% else %}
+        <small> <b>Album:</b> N/A </small>
+        {% endif %}
+    </div>
+</div>
+<p>
+    <audio controls>
+        <source src="{{ url_for('static', filename='music/song') }}" type="audio/mp3">
+        <!--source src="/static/music/memories.mp3"-->
+    </audio>
+</p>
+<a class="btn btn-danger" href='/songs/delete/{{song.id}}'>Delete</a>
+<a class="btn btn-primary" href='/songs/edit/{{song.id}}'>Edit</a>
+<hr>
+{% endfor %}
+
+<div class="col-sm-3 col-sm-offset-1 blocg-sidebar">
+    <div class="sidebar-module sidebar-module-inset">
+        <h3> Search </h3>
+        <form class="form-inline" method="GET" action="search">
+            <div class="form-group">
+                <label for="query">Name</label>
+                <input type="text" class="form-control" name="query" id="query">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
