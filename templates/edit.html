@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title> Edit Post </title>
+{% endblock %}
+
+{% block body %}
+
+<br>
+<br>
+<br>
+
+    <center><h3>Edit Song Details</h3>  </center>
+    <br>
+    <br>
+    <form action='/songs/edit/{{song.id}}' method='POST' enctype="multipart/form-data">
+        <label>Artist: </label> 
+        <input class="form-control mx-sm-3" type="text" name='artist' id='artist' value='{{song.artist}}'>
+        <br>
+        <label>Album: </label> 
+        <input class="form-control mx-sm-3" type="text" name='album' id='album' value='{{song.album}}'>
+        <br>
+    <button type='submit' class="btn btn-primary mb-2">Save</button>
+    </form>
+
+    <hr>
+
+    {% endblock %}

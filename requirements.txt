@@ -1,5 +1,7 @@
 flask
 flask-sqlalchemy
+git+git://github.com/miguelgrinberg/flask-whooshalchemy.git
+pip install Flask-WTF
 
 ///creating DB
 

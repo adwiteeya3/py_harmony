@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title> Amplify </title>
+{% endblock %}
+
+{% block body %}
+<h3> Search </h3>
+<form class="form-inline" method="GET" action="search">
+    <div class="form-group">
+        <label for="query">Name</label>
+        <input type="text" class="form-control" name="query" id="query">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+{% endblock %}
