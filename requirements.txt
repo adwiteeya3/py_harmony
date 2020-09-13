@@ -1,0 +1,8 @@
+flask
+flask-sqlalchemy
+
+///creating DB
+
+open python in terminal
+>>> from app import db
+>>> db.create_all()
