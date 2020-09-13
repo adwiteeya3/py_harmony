@@ -22,9 +22,15 @@ def index():
     songs = Songs.query.all()
     return render_template('index.html')
 
-@app.route('/songs')
-def songs():
-    return render_template('songs.html')
+@app.route('/songs', methods=['GET', 'POST'])
+def collection():
+    if request.method =='GET':
+        all_songs = Songs.query.all()
+        return render_template('songs.html', songs=all_songs)
+    elif request.method == 'POST':
+        song_data = request.form
+        result = add_song(song_data['title'], song_data['artist'], song_data['year'])
+        return redirect('/songs')
 
 @app.route('/upload', methods=['GET','POST'])
 def upload():
@@ -41,6 +47,12 @@ def upload():
         return redirect('/songs')
     return render_template('upload.html', msg='Please choose a file')
 
-
+@app.route('/songs/delete/<int:id>')
+def delete(id):
+    song = Songs.query.get_or_404(id)
+    db.session.delete(song)
+    db.session.commit()
+    return redirect('/songs')
+    
 if __name__ == "__main__":
     app.run(debug=True)
