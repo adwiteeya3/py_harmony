@@ -17,7 +17,7 @@
 {% for song in songs %}
 <br>
 
-<a href="#">{{ song.title }} </a>
+<a href="/songs/player/{{song.id}}">{{ song.title }} </a>
 <div class="form-row">
     <div class="form-group col-md-6">
         {% if song.artist %}
@@ -34,12 +34,7 @@
         {% endif %}
     </div>
 </div>
-<p>
-    <audio controls>
-        <source src="{{ url_for('static', filename='music/song') }}" type="audio/mp3">
-        <!--source src="/static/music/memories.mp3"-->
-    </audio>
-</p>
+
 <a class="btn btn-danger" href='/songs/delete/{{song.id}}'>Delete</a>
 <a class="btn btn-primary" href='/songs/edit/{{song.id}}'>Edit</a>
 <a class="btn btn-primary" href='/songs/download/{{song.id}}'>Download</a> 
