@@ -16,29 +16,36 @@
 <br>
 {% for song in songs %}
 <br>
-
-<a href="/songs/player/{{song.id}}">{{ song.title }} </a>
 <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
+        <a href="/songs/player/{{song.id}}">{{ song.title }} </a>
+    </div>
+    <div class="form-group col-md-3">
         {% if song.artist %}
         <small> <b> Artist: </b> {{ song.artist }} </small>
         {% else %}
         <small> <b> Artist: </b> N/A </small>
         {% endif %}
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
         {% if song.album %}
         <small> <b> Album: </b> {{ song.album }}</small>
         {% else %}
         <small> <b>Album:</b> N/A </small>
         {% endif %}
     </div>
-</div>
+    {{ share.load() }}
+    {{ share.create(title='Share with: ', sites='facebook, twitter, google, linkedin') }}
+    <div class="bd-example">
+        <a class="btn btn-danger" href='/songs/delete/{{song.id}}'>Delete</a>
+        <a class="btn btn-primary" href='/songs/edit/{{song.id}}'>Edit</a>
+        <a class="btn btn-primary" href='/songs/download/{{song.id}}'>Download</a> 
+ 
+    </div>
 
-<a class="btn btn-danger" href='/songs/delete/{{song.id}}'>Delete</a>
-<a class="btn btn-primary" href='/songs/edit/{{song.id}}'>Edit</a>
-<a class="btn btn-primary" href='/songs/download/{{song.id}}'>Download</a> 
+</div>
 <hr>
+
 {% endfor %}
 
 

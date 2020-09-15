@@ -1,11 +1,5 @@
 flask
-flask-sqlalchemy
-git+git://github.com/miguelgrinberg/flask-whooshalchemy.git
-pip install Flask-WTF
-playsound
-///creating DB
-
-open python in terminal
->>> from app import Songs
->>> from app import db
->>> db.create_all()
+flask_sqlalchemy
+sqlite3
+io
+flask_share
