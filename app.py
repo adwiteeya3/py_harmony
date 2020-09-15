@@ -3,6 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 from io import BytesIO
 from playsound import playsound
+import os
+
+VOLUME_PATH =  os.path.abspath(os.curdir)+'\static\songs'
+basedir = os.path.abspath(os.curdir)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///playlist.db'
@@ -14,10 +18,11 @@ class Songs(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), default='N/A')
-    artist = db.Column(db.String(100), default='N/A')
-    album = db.Column(db.String(100), default='N/A')
+    artist = db.Column(db.String(100), nullable=False, default='N/A')
+    album = db.Column(db.String(100), nullable=False, default='N/A')
     data = db.Column(db.BLOB)
-    
+    file_path = db.Column(db.String(100), unique=True, nullable=False)
+
     def __repr__(self):
         return '<Song %r>' % self.title
 
@@ -26,15 +31,11 @@ def index():
     songs = Songs.query.all()
     return render_template('index.html', songs=songs)
 
-@app.route('/songs', methods=['GET', 'POST'])
+@app.route('/songs', methods=['GET'])
 def collection():
     if request.method =='GET':
         songs = Songs.query.all()
         return render_template('songs.html', songs=songs)
-    elif request.method == 'POST':
-        song_data = request.form
-        result = add_song(song_data['title'], song_data['artist'], song_data['year'])
-        return redirect('/songs')
 
 @app.route('/upload', methods=['GET','POST'])
 def upload():
@@ -43,7 +44,11 @@ def upload():
         for file in files:
             song_artist = request.form['artist']
             song_album = request.form['album']
-            file = Songs(title=file.filename, artist=song_artist, album=song_album, data=file.read())
+
+            file.save(os.path.join('D:/Github/python/py_harmony/static/songs/', file.filename))
+            file_path = os.path.join(VOLUME_PATH, file.filename)
+
+            file = Songs(title=file.filename, artist=song_artist, album=song_album, data=file.read(), file_path=file_path)
             db.session.add(file)
             db.session.commit()
         return redirect('/songs')

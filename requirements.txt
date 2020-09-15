@@ -6,5 +6,6 @@ playsound
 ///creating DB
 
 open python in terminal
+>>> from app import Songs
 >>> from app import db
 >>> db.create_all()
