@@ -54,7 +54,7 @@ pip3 install -r requirements.txt
 1. Clone the repo to your local machine.
 2. Install the above given packages.
 3. Import the my_songs.db database using above steps.
-4. Then do python3 app.py.
+4. Then do python app.py.
 5. Open http://127.0.0.1:5000/ in Your local browser.
 
 
