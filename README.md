@@ -34,7 +34,7 @@ A Music management/sharing/streaming platform built using Python and CRUD functi
 
 Open terminal and write the following:
 ```
-pip3 install -r requ
+pip3 install -r requirements.txt
 ```
 
 ## Importing Database
